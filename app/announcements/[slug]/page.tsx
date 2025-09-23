@@ -8,6 +8,7 @@ import { CalendarDays, Clock, Download, AlertTriangle } from "lucide-react"
 import { format } from "date-fns"
 import { zhCN } from "date-fns/locale"
 import Link from "next/link"
+import { GiscusComments } from "@/components/giscus-comments"
 
 interface AnnouncementPageProps {
   params: Promise<{
@@ -94,7 +95,7 @@ export default async function AnnouncementPage({ params }: AnnouncementPageProps
 
         {/* Attachments */}
         {announcement.attachments && announcement.attachments.length > 0 && (
-          <Card>
+          <Card className="mb-8">
             <CardHeader>
               <h2 className="text-xl font-semibold">相关附件</h2>
             </CardHeader>
@@ -117,6 +118,21 @@ export default async function AnnouncementPage({ params }: AnnouncementPageProps
             </CardContent>
           </Card>
         )}
+
+        {/* Giscus comment system */}
+        <Card>
+          <CardContent className="p-6">
+            <GiscusComments
+              repo="xiongsircool/sbc-website"
+              repoId="R_kgDONJQqVw"
+              category="General"
+              categoryId="DIC_kwDONJQqV84CkQHZ"
+              mapping="pathname"
+              reactionsEnabled={true}
+              lang="zh-CN"
+            />
+          </CardContent>
+        </Card>
       </div>
     </div>
   )

@@ -8,6 +8,7 @@ import { CalendarDays, Clock, ExternalLink, BookOpen, Users, Target } from "luci
 import { format } from "date-fns"
 import { zhCN } from "date-fns/locale"
 import Link from "next/link"
+import { GiscusComments } from "@/components/giscus-comments"
 
 interface LearnResourcePageProps {
   params: Promise<{
@@ -123,14 +124,14 @@ export default async function LearnResourcePage({ params }: LearnResourcePagePro
         </header>
 
         {/* Content */}
-        <Card>
+        <Card className="mb-8">
           <CardContent className="p-8">
             <MDXContent code={resource.body.code} />
           </CardContent>
         </Card>
 
         {/* Learning Path Info */}
-        <Card className="mt-8">
+        <Card className="mb-8">
           <CardContent className="p-6">
             <h3 className="text-lg font-semibold mb-3">学习路径</h3>
             <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
@@ -144,6 +145,21 @@ export default async function LearnResourcePage({ params }: LearnResourcePagePro
                 </p>
               </div>
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Giscus comment system */}
+        <Card>
+          <CardContent className="p-6">
+            <GiscusComments
+              repo="xiongsircool/sbc-website"
+              repoId="R_kgDONJQqVw"
+              category="General"
+              categoryId="DIC_kwDONJQqV84CkQHZ"
+              mapping="pathname"
+              reactionsEnabled={true}
+              lang="zh-CN"
+            />
           </CardContent>
         </Card>
       </div>

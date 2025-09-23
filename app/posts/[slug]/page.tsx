@@ -9,6 +9,7 @@ import { format } from "date-fns"
 import { zhCN } from "date-fns/locale"
 import Link from "next/link"
 import Image from "next/image"
+import { GiscusComments } from "@/components/giscus-comments"
 
 interface PostPageProps {
   params: Promise<{
@@ -112,6 +113,21 @@ export default async function PostPage({ params }: PostPageProps) {
                 </div>
               ))}
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Giscus comment system */}
+        <Card className="mt-8">
+          <CardContent className="p-6">
+            <GiscusComments
+              repo="xiongsircool/sbc-website"
+              repoId="R_kgDONJQqVw"
+              category="General"
+              categoryId="DIC_kwDONJQqV84CkQHZ"
+              mapping="pathname"
+              reactionsEnabled={true}
+              lang="zh-CN"
+            />
           </CardContent>
         </Card>
       </div>
