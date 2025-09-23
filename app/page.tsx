@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Megaphone, BookOpen, Users, TrendingUp, ArrowRight, Calendar, Target } from "lucide-react"
 import Link from "next/link"
+import { MetallicTitle } from "@/components/metallic-title"
 
 export default function HomePage() {
   // Get recent announcements (non-expired, sorted by priority and date)
@@ -40,14 +41,12 @@ export default function HomePage() {
 
         <div className="container mx-auto text-center relative z-10">
           <div className="flex justify-center mb-8">
-            <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-primary/20 to-accent/20 backdrop-blur-sm border border-primary/20 shadow-lg">
+            <div className="flex h-20 w-20 items-center justify-center rounded-3xl premium-gradient shadow-2xl">
               <Target className="h-10 w-10 text-primary" />
             </div>
           </div>
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 text-balance bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-            SBC 生物信息学俱乐部
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12 text-pretty leading-relaxed">
+          <MetallicTitle />
+          <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto mb-12 text-pretty leading-relaxed font-medium">
             探索生命科学与计算技术的交汇点，培养下一代生物信息学人才。
             我们致力于提供系统化的学习资源、实践机会和学术交流平台。
           </p>
@@ -55,7 +54,7 @@ export default function HomePage() {
             <Button
               asChild
               size="lg"
-              className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300 premium-gradient"
             >
               <Link href="/learn">
                 开始学习
@@ -66,7 +65,7 @@ export default function HomePage() {
               asChild
               variant="outline"
               size="lg"
-              className="text-lg px-8 py-6 bg-white/80 backdrop-blur-sm border-primary/20 hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="text-lg px-8 py-6 premium-gradient shadow-lg hover:shadow-xl transition-all duration-300 bg-transparent"
             >
               <Link href="/about">了解更多</Link>
             </Button>
@@ -77,7 +76,7 @@ export default function HomePage() {
       <section className="py-20 px-4 bg-gradient-to-b from-white to-secondary/30">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
+            <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-0 premium-gradient">
               <CardContent className="p-8 text-center">
                 <div className="flex justify-center mb-6">
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/20">
@@ -88,7 +87,7 @@ export default function HomePage() {
                 <p className="text-muted-foreground text-lg">活跃成员</p>
               </CardContent>
             </Card>
-            <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
+            <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-0 premium-gradient">
               <CardContent className="p-8 text-center">
                 <div className="flex justify-center mb-6">
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/20">
@@ -99,7 +98,7 @@ export default function HomePage() {
                 <p className="text-muted-foreground text-lg">技术文章</p>
               </CardContent>
             </Card>
-            <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
+            <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-0 premium-gradient">
               <CardContent className="p-8 text-center">
                 <div className="flex justify-center mb-6">
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/20">
@@ -191,7 +190,7 @@ export default function HomePage() {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">学习路径</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto font-medium">
               系统化的学习资源，帮助你从零基础到专业水平
             </p>
           </div>
@@ -266,14 +265,14 @@ export default function HomePage() {
       <section className="py-24 px-4 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance">准备好开始你的生物信息学之旅了吗？</h2>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto text-pretty leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto text-pretty leading-relaxed font-medium">
             加入我们的社区，获得专业指导、实践机会和同行交流
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button
               asChild
               size="lg"
-              className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300 premium-gradient"
             >
               <Link href="/learn">
                 <Calendar className="mr-2 h-5 w-5" />
@@ -284,7 +283,7 @@ export default function HomePage() {
               asChild
               variant="outline"
               size="lg"
-              className="text-lg px-8 py-6 bg-white/80 backdrop-blur-sm border-primary/20 hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="text-lg px-8 py-6 premium-gradient shadow-lg hover:shadow-xl transition-all duration-300 bg-transparent"
             >
               <Link href="/announcements">查看招新信息</Link>
             </Button>
