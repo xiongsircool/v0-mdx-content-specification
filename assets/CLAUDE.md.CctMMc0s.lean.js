@@ -1,0 +1,1 @@
+import{_ as i,c as a,o as n,ae as s}from"./chunks/framework.CBTkueSR.js";const u=JSON.parse('{"title":"CLAUDE.md","description":"","frontmatter":{},"headers":[],"relativePath":"CLAUDE.md","filePath":"CLAUDE.md"}'),t={name:"CLAUDE.md"};function l(o,e,r,c,p,d){return n(),a("div",null,[...e[0]||(e[0]=[s("",29)])])}const m=i(t,[["render",l]]);export{u as __pageData,m as default};

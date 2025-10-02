@@ -1,0 +1,1 @@
+import{_ as a,c as i,o as n,ae as e}from"./chunks/framework.CBTkueSR.js";const c=JSON.parse('{"title":"上海生物信息学联盟","description":"","frontmatter":{},"headers":[],"relativePath":"README.md","filePath":"README.md"}'),t={name:"README.md"};function l(h,s,p,r,o,d){return n(),i("div",null,[...s[0]||(s[0]=[e("",34)])])}const g=a(t,[["render",l]]);export{c as __pageData,g as default};
