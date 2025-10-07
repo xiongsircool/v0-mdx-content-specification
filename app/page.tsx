@@ -20,10 +20,10 @@ export default async function HomePage() {
 
   // Calculate site statistics
   const siteStats = {
-    posts: allPosts.length,
-    announcements: allAnnouncements.length,
-    resources: allResources.length,
-    meetings: allMeetings.length
+    activeMembers: allPosts.length + allMeetings.length, // 参与者数量估算
+    techShares: allPosts.length, // 技术分享数量
+    learnResources: allResources.length, // 学习资料数量
+    totalActivities: allAnnouncements.length + allMeetings.length // 活动总数
   }
 
   const recentAnnouncements = allAnnouncements
