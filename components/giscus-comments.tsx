@@ -18,10 +18,10 @@ interface GiscusCommentsProps {
 }
 
 export function GiscusComments({
-  repo = "xiongsircool/sbc-website", // 替换为你的 GitHub 仓库
-  repoId = "R_kgDONJQqVw", // 替换为你的仓库 ID
-  category = "General", // 替换为你的讨论分类
-  categoryId = "DIC_kwDONJQqV84CkQHZ", // 替换为你的分类 ID
+  repo = "xiongsircool/sbcshanghai", // 你的 GitHub 仓库
+  repoId = "R_kgDOP8J5uA", // 你的仓库 ID
+  category = "Announcements", // 你的讨论分类
+  categoryId = "DIC_kwDOP8J5uM4CwPdy", // 你的分类 ID
   mapping = "pathname",
   term,
   reactionsEnabled = true,

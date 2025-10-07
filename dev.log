@@ -1,0 +1,26 @@
+
+> my-v0-project@0.1.0 dev /Users/xiong/Documents/github/SBCBIOchina
+> next dev
+
+   ▲ Next.js 15.2.4
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.3.104:3000
+
+ ✓ Starting...
+ ✓ Ready in 3.5s
+ ○ Compiling /api/sponsors ...
+ ✓ Compiled /api/sponsors in 1826ms (408 modules)
+ GET /api/sponsors 200 in 2109ms
+ ○ Compiling /api/literature-cache ...
+ ✓ Compiled /api/literature-cache in 767ms (412 modules)
+ GET /api/literature-cache 200 in 880ms
+ ○ Compiling / ...
+ ✓ Compiled / in 3.7s (2124 modules)
+ HEAD / 200 in 5048ms
+ GET / 200 in 514ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 725ms (2125 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1162ms
+ GET /api/sponsors 200 in 253ms
+ GET /api/literature-cache 200 in 268ms
+[?25h

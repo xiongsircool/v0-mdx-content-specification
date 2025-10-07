@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
-import { allLearnResources } from "@/lib/contentlayer-mock"
-import { MDXContent } from "@/components/mdx-content"
+import { getFileBySlug } from "@/lib/server-markdown-loader"
+import { MarkdownContent } from "@/components/markdown-content"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
@@ -17,18 +17,19 @@ interface LearnResourcePageProps {
 }
 
 export async function generateStaticParams() {
-  return allLearnResources.map((resource) => ({
-    slug: resource.slug,
-  }))
+  // Static generation - return empty array for dynamic rendering
+  return []
 }
 
 export default async function LearnResourcePage({ params }: LearnResourcePageProps) {
   const { slug } = await params
-  const resource = allLearnResources.find((resource) => resource.slug === slug)
+  const resourceFile = getFileBySlug('learn/resources', slug)
 
-  if (!resource) {
+  if (!resourceFile) {
     notFound()
   }
+
+  const resource = resourceFile.metadata
 
   const levelColors = {
     入门: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
@@ -126,7 +127,9 @@ export default async function LearnResourcePage({ params }: LearnResourcePagePro
         {/* Content */}
         <Card className="mb-8">
           <CardContent className="p-8">
-            <MDXContent code={resource.body.code} />
+            <div className="max-w-none">
+              <MarkdownContent content={resourceFile.htmlContent} />
+            </div>
           </CardContent>
         </Card>
 
@@ -152,10 +155,10 @@ export default async function LearnResourcePage({ params }: LearnResourcePagePro
         <Card>
           <CardContent className="p-6">
             <GiscusComments
-              repo="xiongsircool/sbc-website"
-              repoId="R_kgDONJQqVw"
-              category="General"
-              categoryId="DIC_kwDONJQqV84CkQHZ"
+              repo="xiongsircool/sbcshanghai"
+              repoId="R_kgDOP8J5uA"
+              category="Announcements"
+              categoryId="DIC_kwDOP8J5uM4CwPdy"
               mapping="pathname"
               reactionsEnabled={true}
               lang="zh-CN"

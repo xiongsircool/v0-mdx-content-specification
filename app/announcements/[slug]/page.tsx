@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
-import { allAnnouncements } from "@/lib/contentlayer-mock"
-import { MDXContent } from "@/components/mdx-content"
+import { getFileBySlug } from "@/lib/server-markdown-loader"
+import { MarkdownContent } from "@/components/markdown-content"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
@@ -17,18 +17,20 @@ interface AnnouncementPageProps {
 }
 
 export async function generateStaticParams() {
-  return allAnnouncements.map((announcement) => ({
-    slug: announcement.slug,
-  }))
+  // 在构建时生成所有静态参数
+  // 注意：这里需要在实际部署时实现或使用 getStaticPaths
+  return []
 }
 
 export default async function AnnouncementPage({ params }: AnnouncementPageProps) {
   const { slug } = await params
-  const announcement = allAnnouncements.find((announcement) => announcement.slug === slug)
+  const announcementFile = getFileBySlug('announcements', slug)
 
-  if (!announcement) {
+  if (!announcementFile) {
     notFound()
   }
+
+  const announcement = announcementFile.metadata
 
   return (
     <div className="min-h-screen bg-background">
@@ -89,7 +91,9 @@ export default async function AnnouncementPage({ params }: AnnouncementPageProps
         {/* Content */}
         <Card className="mb-8">
           <CardContent className="p-8">
-            <MDXContent code={announcement.body.code} />
+            <div className="max-w-none">
+              <MarkdownContent content={announcementFile.htmlContent} />
+            </div>
           </CardContent>
         </Card>
 
@@ -123,10 +127,10 @@ export default async function AnnouncementPage({ params }: AnnouncementPageProps
         <Card>
           <CardContent className="p-6">
             <GiscusComments
-              repo="xiongsircool/sbc-website"
-              repoId="R_kgDONJQqVw"
-              category="General"
-              categoryId="DIC_kwDONJQqV84CkQHZ"
+              repo="xiongsircool/sbcshanghai"
+              repoId="R_kgDOP8J5uA"
+              category="Announcements"
+              categoryId="DIC_kwDOP8J5uM4CwPdy"
               mapping="pathname"
               reactionsEnabled={true}
               lang="zh-CN"

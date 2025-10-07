@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useMemo } from "react"
-import { allMeetings } from "@/lib/contentlayer-mock"
-import { MeetingCard } from "@/components/content-card"
+import { useState, useMemo, useEffect } from "react"
+import { getMeetings } from "@/lib/server-markdown-loader"
+import { ContentCard } from "@/components/content-card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -10,19 +10,37 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Search, Filter, Calendar, Video, MapPin, Users } from "lucide-react"
+import type { ContentItem } from "@/lib/server-markdown-loader"
 
 const allTags = ["工作坊", "文献讨论", "月度会议", "特邀讲座", "Python", "AI", "单细胞", "多组学"]
 const allStatuses = ["即将开始", "进行中", "已结束"]
 const allTypes = ["线上", "线下", "混合"]
 
 export default function MeetingsPage() {
+  const [meetings, setMeetings] = useState<ContentItem[]>([])
+  const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([])
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
 
+  useEffect(() => {
+    const loadMeetingsData = async () => {
+      try {
+        const meetingsData = getMeetings()
+        setMeetings(meetingsData)
+      } catch (error) {
+        console.error("Failed to load meetings:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadMeetingsData()
+  }, [])
+
   const filteredMeetings = useMemo(() => {
-    return allMeetings
+    return meetings
       .filter((meeting) => {
         // Search filter
         const matchesSearch =
@@ -38,7 +56,7 @@ export default function MeetingsPage() {
         const matchesStatus = selectedStatuses.length === 0 || selectedStatuses.includes(meeting.status)
 
         // Type filter
-        const matchesType = selectedTypes.length === 0 || selectedTypes.includes(meeting.type)
+        const matchesType = selectedTypes.length === 0 || selectedTypes.includes(meeting.eventType || meeting.type)
 
         return matchesSearch && matchesTags && matchesStatus && matchesType
       })
@@ -48,7 +66,7 @@ export default function MeetingsPage() {
         if (a.status !== "已结束" && b.status === "已结束") return -1
         return new Date(a.date).getTime() - new Date(b.date).getTime()
       })
-  }, [searchQuery, selectedTags, selectedStatuses, selectedTypes])
+  }, [meetings, searchQuery, selectedTags, selectedStatuses, selectedTypes])
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]))
@@ -184,19 +202,31 @@ export default function MeetingsPage() {
 
         {/* Results */}
         <div className="mb-6">
-          <p className="text-sm text-muted-foreground">
-            找到 {filteredMeetings.length} 个会议
-            {selectedTags.length > 0 && <span> · 标签: {selectedTags.join(", ")}</span>}
-            {selectedStatuses.length > 0 && <span> · 状态: {selectedStatuses.join(", ")}</span>}
-            {selectedTypes.length > 0 && <span> · 类型: {selectedTypes.join(", ")}</span>}
-          </p>
+          {loading ? (
+            <p className="text-sm text-muted-foreground">正在加载会议数据...</p>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              找到 {filteredMeetings.length} 个会议
+              {selectedTags.length > 0 && <span> · 标签: {selectedTags.join(", ")}</span>}
+              {selectedStatuses.length > 0 && <span> · 状态: {selectedStatuses.join(", ")}</span>}
+              {selectedTypes.length > 0 && <span> · 类型: {selectedTypes.join(", ")}</span>}
+            </p>
+          )}
         </div>
 
         {/* Meetings Grid */}
-        {filteredMeetings.length > 0 ? (
+        {loading ? (
+          <Card>
+            <CardContent className="p-12 text-center">
+              <Calendar className="h-16 w-16 text-muted-foreground mx-auto mb-4 animate-pulse" />
+              <h3 className="text-xl font-semibold mb-2">正在加载会议数据</h3>
+              <p className="text-muted-foreground">请稍候...</p>
+            </CardContent>
+          </Card>
+        ) : filteredMeetings.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredMeetings.map((meeting) => (
-              <MeetingCard key={meeting.slug} meeting={meeting} />
+              <ContentCard key={meeting.slug} item={meeting} type="meeting" />
             ))}
           </div>
         ) : (

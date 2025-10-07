@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { allPosts, allAnnouncements, allLearnResources, allMeetings } from "@/lib/contentlayer-mock"
 import Link from "next/link"
 
 interface SearchResult {
@@ -34,86 +33,71 @@ function SearchPageContent() {
   const [sortBy, setSortBy] = useState("relevance")
   const [results, setResults] = useState<SearchResult[]>([])
 
-  const searchContent = (searchQuery: string) => {
+  const performSearch = async (searchQuery: string) => {
     if (!searchQuery.trim()) {
       setResults([])
       return
     }
 
-    const query = searchQuery.toLowerCase()
-    const allResults: SearchResult[] = []
+    try {
+      // Fetch data from APIs
+      const [postsRes, announcementsRes, learnRes, meetingsRes] = await Promise.all([
+        fetch('/api/posts'),
+        fetch('/api/announcements'),
+        fetch('/api/learn'),
+        fetch('/api/meetings')
+      ])
 
-    // 搜索所有内容类型
-    allPosts.forEach((post) => {
-      if (
-        post.title.toLowerCase().includes(query) ||
-        post.excerpt.toLowerCase().includes(query) ||
-        post.tags?.some((tag) => tag.toLowerCase().includes(query))
-      ) {
-        allResults.push({
-          id: post.slug,
-          title: post.title,
-          excerpt: post.excerpt,
-          type: "post",
-          url: `/posts/${post.slug}`,
-          tags: post.tags,
-          date: post.publishedAt,
-        })
-      }
-    })
+      const [posts, announcements, learnResources, meetings] = await Promise.all([
+        postsRes.json(),
+        announcementsRes.json(),
+        learnRes.json(),
+        meetingsRes.json()
+      ])
 
-    allAnnouncements.forEach((announcement) => {
-      if (
-        announcement.title.toLowerCase().includes(query) ||
-        announcement.excerpt.toLowerCase().includes(query) ||
-        announcement.tags?.some((tag) => tag.toLowerCase().includes(query))
-      ) {
-        allResults.push({
-          id: announcement.slug,
-          title: announcement.title,
-          excerpt: announcement.excerpt,
-          type: "announcement",
-          url: `/announcements/${announcement.slug}`,
-          tags: announcement.tags,
-          date: announcement.publishedAt,
-        })
-      }
-    })
+      const allContent = [...posts, ...announcements, ...learnResources, ...meetings]
+      const query = searchQuery.toLowerCase()
 
-    allLearnResources.forEach((resource) => {
-      if (
-        resource.title.toLowerCase().includes(query) ||
-        resource.description.toLowerCase().includes(query) ||
-        resource.tags?.some((tag) => tag.toLowerCase().includes(query))
-      ) {
-        allResults.push({
-          id: resource.slug,
-          title: resource.title,
-          excerpt: resource.description,
-          type: "resource",
-          url: `/learn/resources/${resource.slug}`,
-          tags: resource.tags,
-          date: resource.publishedAt,
-        })
-      }
-    })
+      const allResults: SearchResult[] = []
 
-    allMeetings.forEach((meeting) => {
-      if (
-        meeting.title.toLowerCase().includes(query) ||
-        meeting.description.toLowerCase().includes(query) ||
-        meeting.speaker.toLowerCase().includes(query)
-      ) {
-        allResults.push({
-          id: meeting.id,
-          title: meeting.title,
-          excerpt: meeting.description,
-          type: "meeting",
-          url: `/meetings`,
-          date: meeting.date,
-        })
-      }
-    })
+      allContent.forEach((item) => {
+        let type: "post" | "announcement" | "resource" | "meeting"
+        let date = ''
+
+        if (item.url.startsWith('/posts')) {
+          type = "post"
+          date = item.publishedAt || ''
+        } else if (item.url.startsWith('/announcements')) {
+          type = "announcement"
+          date = item.publishedAt || ''
+        } else if (item.url.startsWith('/learn/resources')) {
+          type = "resource"
+          date = item.updatedAt || ''
+        } else if (item.url.startsWith('/meetings')) {
+          type = "meeting"
+          date = item.date || ''
+        } else {
+          return // 跳过未知类型
+        }
+
+        // Check if content matches search query
+        if (
+          item.title.toLowerCase().includes(query) ||
+          (item.summary && item.summary.toLowerCase().includes(query)) ||
+          (item.excerpt && item.excerpt.toLowerCase().includes(query)) ||
+          (item.tags && item.tags.some((tag: string) => tag.toLowerCase().includes(query)))
+        ) {
+          allResults.push({
+            id: item.slug,
+            title: item.title,
+            excerpt: item.summary || item.excerpt || '',
+            type,
+            url: item.url,
+            tags: item.tags,
+            date,
+          })
+        }
+      })
 
     // 按类型筛选
     const filteredResults =
@@ -125,17 +109,21 @@ function SearchPageContent() {
     } else {
       // 按相关性排序（标题匹配优先）
       filteredResults.sort((a, b) => {
-        const aTitle = a.title.toLowerCase().includes(query) ? 1 : 0
-        const bTitle = b.title.toLowerCase().includes(query) ? 1 : 0
+        const aTitle = a.title.toLowerCase().includes(searchQuery.toLowerCase()) ? 1 : 0
+        const bTitle = b.title.toLowerCase().includes(searchQuery.toLowerCase()) ? 1 : 0
         return bTitle - aTitle
       })
     }
 
     setResults(filteredResults)
+    } catch (error) {
+      console.error('Search error:', error)
+      setResults([])
+    }
   }
 
   useEffect(() => {
-    searchContent(query)
+    performSearch(query)
   }, [query, selectedType, sortBy])
 
   return (

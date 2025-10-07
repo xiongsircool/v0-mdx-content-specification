@@ -1,0 +1,94 @@
+{
+  "papers": [
+    {
+      "thesisId": "1971699463241887744",
+      "paperId": "1971699463241887744",
+      "title": "Hesperetin Alleviates Bleomycin-Induced Pulmonary Fibrosis by Modulating Cellular Senescence and Promoting Impaired Autophagy in a CISD2-Dependent Manner.",
+      "titleZh": "橙皮素通过调节细胞衰老和以 CISD2 依赖性方式促进受损的自噬来缓解博来霉素诱导的肺纤维化。",
+      "summary": "This study further highlighted that the cellular senescence induced by bleomycin was associated with impaired autophagy, which might be related to the inhibition of the CISD2/BECN1 pathway through <span style='color:#ff0000'>bioinformatics</span> analysis. Additionally, hesperetin was found to restore bleomycin-induced impaired autophagy by modulating the CISD2/BECN1 pathway. Notably, the protective effects of hesperetin against pulmonary",
+      "summaryZh": "肺纤维化是一种与年龄相关的疾病，其特征是肺功能进行性下降和高死亡率，治疗选择有限。橙皮素是一种柑橘衍生的类黄酮，具有抗氧化和抗衰老特性，尚未对其在肺纤维化中的潜力进行彻底研究。本研究评估了橙皮素在体内和体外治疗肺纤维化的预防潜力。体内实验表明，橙皮素可以显着降低博来霉素诱导的肺纤维化的细胞衰老。Nrf2 信号的激活参与抑制橙皮素处理的 A549 细胞的细胞衰老和氧化应激。我们发现 CISD2 的缺乏导致博来霉素诱导的肺纤维化，并与橙皮素的保护作用有关，橙皮素与 CISD2 具有高亲和力。同时，过表达 CISD2 在体外改善了博来霉素诱导的细胞衰老。本研究进一步强调，博来霉素诱导的细胞衰老与自噬受损有关，这可能与生物信息学分析抑制 CISD2/BECN1 通路有关。此外，还发现橙皮素通过调节 CISD2/BECN1 通路来恢复博来霉素诱导的受损自噬。值得注意的是，橙皮素对肺纤维化的保护作用在",
+      "doi": "10.1096/fj.202502311r",
+      "pmid": "41001804",
+      "publishDate": 1760457600000,
+      "pubDate": "2025-10-15",
+      "keywords": [
+        "BECN1",
+        "CISD2",
+        "cellular senescence",
+        "hesperetin",
+        "impaired autophagy",
+        "pulmonary fibrosis"
+      ],
+      "volume": "39",
+      "issue": "19"
+    },
+    {
+      "thesisId": "1972786475671777280",
+      "paperId": "1972786475671777280",
+      "title": "STC1-Based Activation of NF-κB Signaling Pathway Induces Epthithelial-Mesenchymal Transition Thus Promotes Progression and Temozolomide Resistance of Glioblastoma.",
+      "titleZh": "基于 STC1 的 NF-κB 信号通路激活诱导上皮-间充质转化，从而促进胶质母细胞瘤的进展和替莫唑胺耐药。",
+      "summary": "functional role and mechanism of STC1 inducing TMZ resistance becomes an urgent need for individual individualized strategies for GBM. The GSE151680 dataset was obtained from the GEO database; thus, <span style='color:#ff0000'>bioinformatic</span> analysis was performed by using R software (version 4.2.0) to screen the differentially expressed genes correlated to TMZ resistance in GBM. Cox regression and nonnegative matrix factorization (NMF)",
+      "summaryZh": "对化疗的获得性耐药性，尤其是对替莫唑胺 （TMZ） 的耐药性，是与胶质母细胞瘤 （GBM） 治疗失败相关的主要挑战。Stanniocalcin-1 （STC1） 是一种糖蛋白激素，参与癌细胞的多种生物学过程。然而，STC1 在 GBM 中的功能和潜在机制仍不清楚。为此，探索 STC1 诱导 TMZ 耐药的潜在功能作用和机制成为 GBM 个体化策略的迫切需求。GSE151680 数据集来自 GEO 数据库;因此，利用 R 软件（4.2.0 版）进行生物信息学分析，筛选与 GBM 抗性相关的差异表达基因。采用 Cox 回归和非负矩阵分解（NMF）分析建立预后模型。此外，还采用免疫组化（IHC）染色、qRT-PCR 和蛋白质印迹法研究 STC1 在 GBM 组织和非肿瘤对照中的表达。通过机械方法，进行功能丧失和功能获得试验，验证 STC1 对 GBM 细胞恶性生物学特性和 TMZ 耐药性的生物学功能。此外，还通过富集分析研究了",
+      "doi": "10.1096/fj.202500095r",
+      "pmid": "41020346",
+      "publishDate": 1760457600000,
+      "pubDate": "2025-10-15",
+      "keywords": [
+        "EMT",
+        "NF‐κB",
+        "STC1",
+        "glioblastoma",
+        "metastasis"
+      ],
+      "volume": "39",
+      "issue": "19"
+    },
+    {
+      "thesisId": "1974868590794141696",
+      "paperId": "1974868590794141696",
+      "title": "PSVII-28 Hiring expectations for new and future workers in animal STEM careers.",
+      "summary": "knowledge, mean = 3.55 for molecular genetics knowledge), <span style='color:#ff0000'>bioinformatics</span> (mean = 3.41), and general statistics (mean = 3.36). Low to moderate standard deviations and minimal skewness across all items indicated consensus among respondents, with some variation. Additionally, industry leaders emphasized emerging trends and needs, particularly in <span style='color:#ff0000'>bioinformatics</span>, computational biology, coding, data science, and",
+      "doi": "10.1093/jas/skaf300.581",
+      "publishDate": 1759593600000,
+      "pubDate": "2025-10-05",
+      "volume": "103",
+      "issue": "Supplement_3"
+    },
+    {
+      "thesisId": "1974860575521140736",
+      "paperId": "1974860575521140736",
+      "title": "Deciphering the antiviral mechanisms of Fangqin Qinggan decoction against influenza A virus: a multi-omics and machine learning approach",
+      "summary": "simulation. FQ-01 significantly improved survival rates, reduced clinical mortality, and mitigated pulmonary inflammation in an IAV-infected mice while suppressing viral replication. Integrated <span style='color:#ff0000'>bioinformatics</span> and LASSO regression analyses identified 20 genes associated with FQ-01’s antiviral effects, with Myd88 and Ccl5 emerging as key targets. Transcriptomic profiling of murine lung tissues further",
+      "doi": "10.1186/s13020-025-01211-0",
+      "pmid": "41046260",
+      "publishDate": 1759593600000,
+      "pubDate": "2025-10-05",
+      "volume": "20",
+      "issue": "1"
+    },
+    {
+      "thesisId": "1974870175670628352",
+      "paperId": "1974870175670628352",
+      "title": "154 Physiological imbalances and targets in dairy cattle using metabonomics.",
+      "summary": "and quantification of small molecules produced through metabolic activity. In the process, individual metabolites can be identified, structures can be assigned to identified spectra, and applying <span style='color:#ff0000'>bioinformatic</span> approaches such as multivariate statistics and pattern recognition (e.g., partial least square analysis), metabolite patterns and potential biomarkers can be identified. We have employed these strategies",
+      "doi": "10.1093/jas/skaf300.062",
+      "publishDate": 1759593600000,
+      "pubDate": "2025-10-05",
+      "volume": "103",
+      "issue": "Supplement_3"
+    },
+    {
+      "thesisId": "1974868214665736192",
+      "paperId": "1974868214665736192",
+      "title": "353 Award Talk: From omics networks to targets of opportunity in ruminant nutritional physiology.",
+      "summary": "Urbana-Champaign, between 2002 (7,872 cDNA) to 2005 (13,000 oligonucleotides) were among the first of their kind used in nutritional and physiological genomics studies of dairy cattle. Application of <span style='color:#ff0000'>bioinformatics</span> analyses to transcriptome data generated across the transition into lactation in dairy cow liver, adipose, and mammary tissue, in addition to circulating neutrophils, generated the first glance",
+      "doi": "10.1093/jas/skaf300.338",
+      "publishDate": 1759593600000,
+      "pubDate": "2025-10-05",
+      "volume": "103",
+      "issue": "Supplement_3"
+    }
+  ],
+  "total": 300,
+  "timestamp": 1759750038759
+}

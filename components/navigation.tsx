@@ -3,15 +3,17 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, X, Dna, BookOpen, Megaphone, GraduationCap, Calendar } from "lucide-react"
-import { GlobalSearch } from "@/components/search/global-search"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import { Menu, X, BookOpen, Megaphone, GraduationCap, Calendar, Target } from "lucide-react"
+import { SimpleGlobalSearch } from "@/components/simple-global-search"
+import Image from "next/image"
 
 const navigation = [
-  { name: "首页", href: "/", icon: Dna },
-  { name: "公告", href: "/announcements", icon: Megaphone },
-  { name: "技术推文", href: "/posts", icon: BookOpen },
-  { name: "学习资源", href: "/learn", icon: GraduationCap },
+  { name: "首页", href: "/" },
+  { name: "活动公告", href: "/announcements", icon: Megaphone },
+  { name: "技术分享", href: "/posts", icon: BookOpen },
+  { name: "学习资料", href: "/learn", icon: GraduationCap },
+  { name: "关于我们", href: "/about", icon: Target },
   { name: "会议", href: "/meetings", icon: Calendar },
 ]
 
@@ -24,12 +26,18 @@ export function Navigation() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <Dna className="h-5 w-5" />
+            <div className="relative h-10 w-10" style={{ position: 'relative' }}>
+              <Image
+                src="/logo-nav.png"
+                alt="SBC Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
             <div className="hidden sm:block">
               <h1 className="text-lg font-bold">SBC</h1>
-              <p className="text-xs text-muted-foreground">上海生物信息中心</p>
+              <p className="text-xs text-muted-foreground">生信爱好者聚集地</p>
             </div>
           </Link>
 
@@ -44,13 +52,13 @@ export function Navigation() {
                     href={item.href}
                     className="flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                   >
-                    <Icon className="h-4 w-4" />
+                    {Icon && <Icon className="h-4 w-4" />}
                     {item.name}
                   </Link>
                 )
               })}
             </nav>
-            <GlobalSearch />
+            <SimpleGlobalSearch />
           </div>
 
           {/* Mobile Navigation */}
@@ -62,10 +70,16 @@ export function Navigation() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80">
+              <SheetTitle className="sr-only">导航菜单</SheetTitle>
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                    <Dna className="h-5 w-5" />
+                  <div className="relative h-8 w-8" style={{ position: 'relative' }}>
+                    <Image
+                      src="/logo-nav.png"
+                      alt="SBC Logo"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
                   <div>
                     <h1 className="text-lg font-bold">SBC</h1>
@@ -77,7 +91,7 @@ export function Navigation() {
                 </Button>
               </div>
               <div className="mb-6">
-                <GlobalSearch />
+                <SimpleGlobalSearch />
               </div>
               <nav className="space-y-4">
                 {navigation.map((item) => {
@@ -89,7 +103,7 @@ export function Navigation() {
                       onClick={() => setIsOpen(false)}
                       className="flex items-center gap-3 text-lg font-medium transition-colors hover:text-primary"
                     >
-                      <Icon className="h-5 w-5" />
+                      {Icon && <Icon className="h-5 w-5" />}
                       {item.name}
                     </Link>
                   )
